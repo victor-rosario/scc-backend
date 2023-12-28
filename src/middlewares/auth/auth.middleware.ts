@@ -12,6 +12,8 @@ export const authMiddleware = async (
 		//@ts-ignore
 		req.session[cookieConfig.names.public]?.user?.decrypt()
 
+	console.log("accessToken: ", accessToken)
+
 	if (!accessToken) {
 		return res.status(401).json({ error: { message: 'Unauthorized' } })
 	}
