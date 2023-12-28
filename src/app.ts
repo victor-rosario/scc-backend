@@ -16,7 +16,7 @@ import helmet from 'helmet'
 import { generalQueryParser } from '@middlewares/common/parser.middleware'
 import { validateUUIDMiddleware } from '@middlewares/common/validate-uuid.middleware'
 
-const { isLive } = serverConfig
+const { isProd } = serverConfig
 const sessionDir = path.join(__dirname, '../storage/session')
 if (!fs.existsSync(sessionDir)) {
 	fs.mkdirSync(sessionDir, { recursive: true })
@@ -37,7 +37,7 @@ const sessionConfig: SessionOptions = {
 	resave: false,
 	saveUninitialized: false,
 	cookie: {
-		secure: isLive,
+		secure: isProd,
 		httpOnly: true,
 		domain: cookieConfig.domain,
 		maxAge: 60 * 60 * 24 * 1000,
@@ -59,7 +59,7 @@ app.disable("x-powered-by")
 
 app.use('/public', express.static(path.join(__dirname, '../public')))
 
-isLive && app.set('trust proxy', 1)
+isProd && app.set('trust proxy', 1)
 
 app.use(express.urlencoded({ extended: true, limit: '8mb' }))
 app.use(express.json())
