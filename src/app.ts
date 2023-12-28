@@ -45,6 +45,8 @@ const sessionConfig: SessionOptions = {
 	}
 }
 
+console.log("sessionConfig: ", sessionConfig)
+
 app.use(
 	cors({
 		origin: true,
