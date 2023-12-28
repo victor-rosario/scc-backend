@@ -16,10 +16,14 @@ export const signInController = async (req: Request, res: Response) => {
 
     userMemory.set(user?.uuid as string, user as UserEntity)
 
+    console.log("user: ", user)
+
     //@ts-ignore
     req.session[cookieConfig.names.public] = {
         user: `${user.uuid}`.encrypt()
     }
+
+    console.log("req.session: ", req.session)
 
     const response = {
         login: true,
