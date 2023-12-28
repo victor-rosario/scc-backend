@@ -41,7 +41,7 @@ const sessionConfig: SessionOptions = {
 		httpOnly: true,
 		domain: cookieConfig.domain,
 		maxAge: 60 * 60 * 24 * 1000,
-		sameSite: isLive ? false : 'lax'
+		sameSite: isLive ? false : 'none'
 	}
 }
 
